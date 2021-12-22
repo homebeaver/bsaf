@@ -5,18 +5,30 @@
 package org.jdesktop.application;
 
 import static org.jdesktop.application.Application.KEY_APPLICATION_VENDOR_ID;
-import org.jdesktop.application.utils.AppHelper;
-import org.jdesktop.application.utils.PlatformType;
 
-import javax.jnlp.*;
-import java.awt.*;
-import java.beans.*;
-import java.io.*;
+//import javax.jnlp.*;
+import java.awt.Rectangle;
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.ExceptionListener;
+import java.beans.Expression;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.jdesktop.application.utils.AppHelper;
+import org.jdesktop.application.utils.PlatformType;
 
 /**
  * Access to per application, per user, local file storage.
@@ -480,8 +492,29 @@ public class LocalStorage extends AbstractBean {
         return null;
     }
 
+    // EUG: nicht implementiert:
     private final class PersistenceServiceIO extends LocalIO {
 
+    	// wird nicht implementiert: private abstract class LocalIO 
+    	// da in jdk-17 kein webstart aka javax.jnlp.*
+		@Override
+		public InputStream openInputFile(String fileName) throws IOException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public OutputStream openOutputFile(String fileName, boolean append) throws IOException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public boolean deleteFile(String fileName) throws IOException {
+			// TODO Auto-generated method stub
+			return false;
+		}
+/*
         private BasicService bs;
         private PersistenceService ps;
 
@@ -539,7 +572,7 @@ public class LocalStorage extends AbstractBean {
                 } catch (FileNotFoundException e) {
                     /* Verify that the max size for new PersistenceService
                      * files is >= 100K (2^17) before opening one.
-                     */
+                     * /
                     long maxSizeRequest = 131072L;
                     long maxSize = ps.create(fileURL, maxSizeRequest);
                     if (maxSize >= maxSizeRequest) {
@@ -567,5 +600,6 @@ public class LocalStorage extends AbstractBean {
                 throw new IOException("openInputFile \"" + fileName + "\" failed", e);
             }
         }
+ */
     }
 }
