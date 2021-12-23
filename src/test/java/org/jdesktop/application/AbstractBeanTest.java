@@ -1,11 +1,11 @@
 package org.jdesktop.application;
 
+import static org.junit.Assert.assertTrue;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import javax.swing.SwingUtilities;
-
-import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -34,7 +34,7 @@ public class AbstractBeanTest {
             lock.wait(1000);
         }
         
-        Assert.assertTrue(onEdt);
+        assertTrue(onEdt);
     }
     
     private static final class TestBean extends AbstractBean {
