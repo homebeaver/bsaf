@@ -5,10 +5,12 @@
 
 package org.jdesktop.application;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
@@ -17,6 +19,12 @@ import java.beans.PropertyChangeSupport;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ResourceBundle;
+
+import javax.swing.ActionMap;
+import javax.swing.Icon;
+import javax.swing.KeyStroke;
+
+import org.junit.Test;
 
 /*
  * This test depends on ResourceBundles and an image file:
@@ -291,7 +299,7 @@ public class ApplicationActionMapTest
         checkCommandKey(appAM, allActionProperties, "AllCommand");
         KeyStroke controlA = KeyStroke.getKeyStroke("control A");
         checkAcceleratorKey(appAM, allActionProperties, controlA);
-        checkMnemonicKey(appAM, allActionProperties, new Integer(controlA.getKeyCode()));
+        checkMnemonicKey(appAM, allActionProperties, Integer.valueOf(controlA.getKeyCode()));
         String checkActionMnemonics0 = "checkActionMnemonics0";
     }
 
@@ -328,7 +336,7 @@ public class ApplicationActionMapTest
         KeyStroke controlA = KeyStroke.getKeyStroke("control A");
         checkAcceleratorKey(appAM, alternateActionName, controlA);
         KeyStroke A = KeyStroke.getKeyStroke("A");
-        checkMnemonicKey(appAM, alternateActionName, new Integer(A.getKeyCode()));
+        checkMnemonicKey(appAM, alternateActionName, Integer.valueOf(A.getKeyCode()));
     }
 
     @Test
