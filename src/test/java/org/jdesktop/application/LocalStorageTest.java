@@ -5,14 +5,18 @@
 
 package org.jdesktop.application;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Scanner;
+import java.util.logging.Logger;
+
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Test the LocalStorage class.
@@ -30,12 +34,22 @@ import java.util.Scanner;
  */
 public class LocalStorageTest
 {
+    private static final Logger LOG = Logger.getLogger(LocalStorageTest.class.getName());
+
     private  File localStorageDirectory;
     private  ApplicationContext context = new ApplicationContext();
 
     @Before
     public void methodSetup()
     {
+    	//-------------
+    	String p = "LocalStorage.dir";
+    	System.setProperty(p, "build/local-storage.tmp");
+    	LOG.info("prop:"+p + " : " + System.getProperty(p) + " /env:"+ System.getenv().get(p));
+    	System.getenv().forEach((key, v) -> {
+//    	    LOG.info("key:"+key + " : " + v);
+    	});
+    	//-------------
         String dirString = System.getProperty("LocalStorage.dir");
         if (dirString == null)
         {

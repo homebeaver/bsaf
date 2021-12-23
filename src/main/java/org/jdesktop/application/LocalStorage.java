@@ -500,18 +500,21 @@ public class LocalStorage extends AbstractBean {
 		@Override
 		public InputStream openInputFile(String fileName) throws IOException {
 			// TODO Auto-generated method stub
+			logger.warning("TODO Auto-generated method stub fileName:"+fileName);
 			return null;
 		}
 
 		@Override
 		public OutputStream openOutputFile(String fileName, boolean append) throws IOException {
 			// TODO Auto-generated method stub
+			logger.warning("TODO Auto-generated method stub fileName:"+fileName + ", append="+append);
 			return null;
 		}
 
 		@Override
 		public boolean deleteFile(String fileName) throws IOException {
 			// TODO Auto-generated method stub
+			logger.warning("TODO Auto-generated method stub fileName:"+fileName);
 			return false;
 		}
 /*

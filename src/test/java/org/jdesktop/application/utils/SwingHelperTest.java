@@ -1,9 +1,10 @@
 package org.jdesktop.application.utils;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -16,19 +17,11 @@ import org.junit.Test;
 
 public class SwingHelperTest {
 
-    @Test
-    public void testFindRootPaneContainerNull() {
-        JComponent cmp = new JComponent() {
-        };
-        RootPaneContainer rpc = SwingHelper.findRootPaneContainer(cmp);
-        assertNull(rpc);
-        
-        rpc = SwingHelper.findRootPaneContainer(null);
-        assertNull(rpc);
-    }
+    private static final Logger LOG = Logger.getLogger(SwingHelperTest.class.getName());
 
     @Test
     public void testFindRootPaneContainerParent1() {
+    	LOG.info("findRootPaneContainer");
         JFrame f = new JFrame();
         JButton b = new JButton();
         f.getContentPane().add(b);
